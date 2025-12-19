@@ -1,0 +1,7 @@
+/
+├─ main.py              ← код бота (добавим на шаге 4)
+├─ requirements.txt     ← зависимости
+├─ posted.txt           ← защита от дублей
+└─ .github/
+    └─ workflows/
+        └─ run.yml      ← автозапуск
