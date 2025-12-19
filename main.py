@@ -1,3 +1,19 @@
+from telegram import Bot
+import os
+
+print("TEST: starting telegram test")
+
+bot = Bot(token=os.getenv("TELEGRAM_BOT_TOKEN"))
+bot.send_message(
+    chat_id=os.getenv("TELEGRAM_CHAT_ID"),
+    text="✅ ТЕСТ: если ты видишь это сообщение — бот МОЖЕТ писать в канал"
+)
+
+print("TEST: message sent")
+exit()
+
+
+
 import os
 import requests
 from bs4 import BeautifulSoup
