@@ -1,16 +1,13 @@
 name: Korean Auto News Bot
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 */3 * * *"
-  workflow_dispatch:
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ github.workspace }}
 
     steps:
       - name: Checkout repository
@@ -21,14 +18,19 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Debug workspace
+        run: |
+          echo "WORKSPACE: $GITHUB_WORKSPACE"
+          ls -la $GITHUB_WORKSPACE
+
       - name: Upgrade pip
         run: python -m pip install --upgrade pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r $GITHUB_WORKSPACE/requirements.txt
 
       - name: Run bot
-        run: python main.py
+        run: python $GITHUB_WORKSPACE/main.py
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
