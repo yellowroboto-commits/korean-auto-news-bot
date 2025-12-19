@@ -19,9 +19,11 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+        working-directory: .
 
       - name: Run bot
         run: python main.py
+        working-directory: .
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
